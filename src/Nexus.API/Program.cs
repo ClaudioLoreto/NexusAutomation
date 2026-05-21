@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Nexus.Core.Interfaces;
 using Nexus.Data;
+using Nexus.Scraper.DependencyInjection;
 using Nexus.Scraper.Storyblocks;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,18 +16,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("PostgreSQL");
-if (!string.IsNullOrWhiteSpace(connectionString))
-{
-    builder.Services.AddDbContext<NexusDbContext>(options =>
-        options.UseNpgsql(connectionString));
-}
-else
-{
-    builder.Services.AddDbContext<NexusDbContext>(options =>
-        options.UseNpgsql("Host=localhost;Database=nexus_shorts_placeholder;Username=;Password="));
-}
+if (string.IsNullOrWhiteSpace(connectionString))
+    throw new InvalidOperationException("ConnectionStrings:PostgreSQL is required.");
 
-builder.Services.AddScoped<IStoryblocksScraper, StoryblocksScraperStub>();
+builder.Services.AddDbContext<NexusDbContext>(options => options.UseNpgsql(connectionString));
+
+builder.Services.Configure<StoryblocksScraperOptions>(
+    builder.Configuration.GetSection(StoryblocksScraperOptions.SectionName));
+builder.Services.AddStoryblocksScraper();
 
 var app = builder.Build();
 
