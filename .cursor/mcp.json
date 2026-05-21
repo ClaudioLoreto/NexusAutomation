@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "nexus-docs": {
+      "comment": "Placeholder — add MCP servers that wrap external tools. API keys belong in config/secrets.json, not here.",
+      "command": "echo",
+      "args": ["Configure MCP tools after secrets are in place"]
+    }
+  }
+}

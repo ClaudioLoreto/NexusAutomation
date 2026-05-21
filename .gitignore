@@ -1,0 +1,27 @@
+# Secrets
+config/secrets.json
+.env
+data/storyblocks-cookies.json
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+
+# Node / Angular
+client/nexus-dashboard/node_modules/
+client/nexus-dashboard/dist/
+client/nexus-dashboard/.angular/
+
+# Media & outputs
+Assets/**/*.mp3
+Assets/**/*.mp4
+output/
+temp/
+
+# OS
+.DS_Store
+Thumbs.db
