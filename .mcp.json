@@ -1,0 +1,28 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/mcp.json",
+  "name": "nexus-shorts-engine",
+  "description": "MCP configuration for the Nexus-Shorts-Engine autonomous agent. All secrets are referenced via environment variables loaded from .env (gitignored). Never commit real values.",
+  "envFile": ".env",
+  "servers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "${NEXUS_PG_CONNECTION_STRING}"],
+      "description": "Read/write access to the Nexus PostgreSQL database."
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+      "description": "Scoped filesystem access to the Nexus solution root."
+    }
+  },
+  "context": {
+    "memoryFile": "CLAUDE.md",
+    "rules": [
+      "Read CLAUDE.md before every action.",
+      "Never invent third-party UI selectors or API keys.",
+      "Halt and surface a HUMAN INPUT REQUIRED block when secrets or selectors are missing.",
+      "All persistence must go through Entity Framework Core targeting PostgreSQL.",
+      "All rendered videos must apply micro-zoom (1-2%), LUT color grading, and -22dB ducking."
+    ]
+  }
+}

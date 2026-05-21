@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nexus.Core\Nexus.Core.csproj" />
+    <ProjectReference Include="..\Nexus.Data\Nexus.Data.csproj" />
+    <ProjectReference Include="..\Nexus.Analysis\Nexus.Analysis.csproj" />
+    <ProjectReference Include="..\Nexus.Scraper\Nexus.Scraper.csproj" />
+    <ProjectReference Include="..\Nexus.Creative\Nexus.Creative.csproj" />
+    <ProjectReference Include="..\Nexus.Engine\Nexus.Engine.csproj" />
+  </ItemGroup>
+
+</Project>
