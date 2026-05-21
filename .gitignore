@@ -1,0 +1,35 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.vs/
+*.DotSettings.user
+
+## Secrets — NEVER commit
+appsettings.Secrets.json
+secrets.json
+.env
+*.pfx
+
+## Cookies / Scraper artifacts
+cookies.json
+Downloads/
+
+## FFmpeg Output
+Output/
+
+## Node / Angular
+client/nexus-dashboard/node_modules/
+client/nexus-dashboard/dist/
+client/nexus-dashboard/.angular/
+
+## OS
+.DS_Store
+Thumbs.db
+
+## IDE
+.idea/
+.vscode/
+*.swp
