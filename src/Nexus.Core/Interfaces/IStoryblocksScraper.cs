@@ -5,7 +5,10 @@ namespace Nexus.Core.Interfaces;
 public interface IStoryblocksScraper
 {
     /// <summary>
-    /// Ensures session is valid via cookies.json or manual Google OAuth (headed).
+    /// Ensures the session is valid: loads <c>data/state.json</c> (Playwright
+    /// StorageState: cookies + localStorage + sessionStorage) if present,
+    /// otherwise launches a HEADED Chromium for manual Google OAuth and
+    /// persists the resulting state on success.
     /// </summary>
     Task<bool> EnsureAuthenticatedAsync(CancellationToken cancellationToken = default);
 

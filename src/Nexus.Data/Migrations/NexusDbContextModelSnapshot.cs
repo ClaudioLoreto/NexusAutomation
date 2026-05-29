@@ -30,6 +30,11 @@ namespace Nexus.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AdditionalScriptInstructions")
+                        .IsRequired()
+                        .HasMaxLength(4000)
+                        .HasColumnType("character varying(4000)");
+
                     b.Property<string>("ElevenLabsVoiceId")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -37,6 +42,48 @@ namespace Nexus.Data.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("KaraokeBackgroundColor")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)");
+
+                    b.Property<string>("KaraokeFillColor")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)");
+
+                    b.Property<string>("KaraokeFontFamily")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<int>("KaraokeFontSize")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("KaraokeHighlightColor")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)");
+
+                    b.Property<int>("KaraokeHighlightFontSize")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("KaraokeOutlineColor")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)");
+
+                    b.Property<double>("KaraokeYPositionPercent")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("LanguageCode")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)");
+
+                    b.Property<int?>("MaxWords")
+                        .HasColumnType("integer");
 
                     b.Property<string>("MusicDirectory")
                         .IsRequired()
@@ -48,6 +95,20 @@ namespace Nexus.Data.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("character varying(128)");
 
+                    b.Property<int>("OverlayGifLoopCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("OverlayGifPath")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
+
+                    b.Property<double>("OverlayGifPositionPercent")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("OverlayGifTailSeconds")
+                        .HasColumnType("double precision");
+
                     b.Property<int>("QueuePriority")
                         .HasColumnType("integer");
 
@@ -55,6 +116,17 @@ namespace Nexus.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
+
+                    b.Property<int?>("TargetWordCount")
+                        .HasColumnType("integer");
+
+                    b.Property<float>("TtsSpeed")
+                        .HasColumnType("real");
+
+                    b.Property<string>("TtsVoice")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
 
                     b.Property<int>("Type")
                         .HasColumnType("integer");
@@ -70,36 +142,212 @@ namespace Nexus.Data.Migrations
                         new
                         {
                             Id = 1,
+                            AdditionalScriptInstructions = "End every short with a single concrete takeaway.",
                             ElevenLabsVoiceId = "",
                             IsActive = true,
+                            KaraokeBackgroundColor = "#0D1321",
+                            KaraokeFillColor = "#FFFFFF",
+                            KaraokeFontFamily = "The Bold Font",
+                            KaraokeFontSize = 96,
+                            KaraokeHighlightColor = "#FFD166",
+                            KaraokeHighlightFontSize = 140,
+                            KaraokeOutlineColor = "#000000",
+                            KaraokeYPositionPercent = 7.0,
+                            LanguageCode = "en-US",
+                            MaxWords = 150,
                             MusicDirectory = "Assets/Music/Finance",
                             Name = "Finance",
+                            OverlayGifLoopCount = 0,
+                            OverlayGifPath = "Assets/Overlays/subscribe.gif",
+                            OverlayGifPositionPercent = 95.299999999999997,
+                            OverlayGifTailSeconds = 5.0,
                             QueuePriority = 100,
                             ScriptTone = "Formal, authoritative",
+                            TargetWordCount = 130,
+                            TtsSpeed = 1f,
+                            TtsVoice = "onyx",
                             Type = 1
                         },
                         new
                         {
                             Id = 2,
+                            AdditionalScriptInstructions = "Open with a 'wait, what?' hook.",
                             ElevenLabsVoiceId = "",
                             IsActive = true,
+                            KaraokeBackgroundColor = "#0D1321",
+                            KaraokeFillColor = "#FFFFFF",
+                            KaraokeFontFamily = "The Bold Font",
+                            KaraokeFontSize = 96,
+                            KaraokeHighlightColor = "#39FF14",
+                            KaraokeHighlightFontSize = 140,
+                            KaraokeOutlineColor = "#000000",
+                            KaraokeYPositionPercent = 7.0,
+                            LanguageCode = "en-US",
+                            MaxWords = 150,
                             MusicDirectory = "Assets/Music/Tech",
                             Name = "Tech & AI",
+                            OverlayGifLoopCount = 0,
+                            OverlayGifPath = "Assets/Overlays/subscribe.gif",
+                            OverlayGifPositionPercent = 95.299999999999997,
+                            OverlayGifTailSeconds = 5.0,
                             QueuePriority = 100,
                             ScriptTone = "Dynamic, enthusiastic",
+                            TargetWordCount = 130,
+                            TtsSpeed = 1.05f,
+                            TtsVoice = "nova",
                             Type = 2
                         },
                         new
                         {
                             Id = 3,
+                            AdditionalScriptInstructions = "Build to a single chilling fact halfway through.",
                             ElevenLabsVoiceId = "",
                             IsActive = true,
+                            KaraokeBackgroundColor = "#0D1321",
+                            KaraokeFillColor = "#FFFFFF",
+                            KaraokeFontFamily = "The Bold Font",
+                            KaraokeFontSize = 96,
+                            KaraokeHighlightColor = "#FFD166",
+                            KaraokeHighlightFontSize = 140,
+                            KaraokeOutlineColor = "#000000",
+                            KaraokeYPositionPercent = 7.0,
+                            LanguageCode = "en-US",
+                            MaxWords = 150,
                             MusicDirectory = "Assets/Music/Legal",
                             Name = "Legal & Court",
+                            OverlayGifLoopCount = 0,
+                            OverlayGifPath = "Assets/Overlays/subscribe.gif",
+                            OverlayGifPositionPercent = 95.299999999999997,
+                            OverlayGifTailSeconds = 5.0,
                             QueuePriority = 100,
                             ScriptTone = "Narrative, dramatic pauses",
+                            TargetWordCount = 130,
+                            TtsSpeed = 1f,
+                            TtsVoice = "echo",
                             Type = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AdditionalScriptInstructions = "Apri con una scena visiva concreta. Ogni short deve chiudere con una rivelazione storica sorprendente.",
+                            ElevenLabsVoiceId = "",
+                            IsActive = true,
+                            KaraokeBackgroundColor = "#1A0F00",
+                            KaraokeFillColor = "#FFFFFF",
+                            KaraokeFontFamily = "The Bold Font",
+                            KaraokeFontSize = 96,
+                            KaraokeHighlightColor = "#D4AF37",
+                            KaraokeHighlightFontSize = 140,
+                            KaraokeOutlineColor = "#1A0F00",
+                            KaraokeYPositionPercent = 8.0,
+                            LanguageCode = "it-IT",
+                            MaxWords = 170,
+                            MusicDirectory = "Assets/Music/HistoryEpic",
+                            Name = "Storia Antica",
+                            OverlayGifLoopCount = 0,
+                            OverlayGifPath = "Assets/Overlays/subscribe.gif",
+                            OverlayGifPositionPercent = 95.299999999999997,
+                            OverlayGifTailSeconds = 5.0,
+                            QueuePriority = 100,
+                            ScriptTone = "Drammatico, epico",
+                            TargetWordCount = 150,
+                            TtsSpeed = 0.95f,
+                            TtsVoice = "onyx",
+                            Type = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AdditionalScriptInstructions = "Hook in 4 words or less. No filler.",
+                            ElevenLabsVoiceId = "",
+                            IsActive = true,
+                            KaraokeBackgroundColor = "#0D1321",
+                            KaraokeFillColor = "#FFFFFF",
+                            KaraokeFontFamily = "The Bold Font",
+                            KaraokeFontSize = 102,
+                            KaraokeHighlightColor = "#FF14C8",
+                            KaraokeHighlightFontSize = 150,
+                            KaraokeOutlineColor = "#000000",
+                            KaraokeYPositionPercent = 6.0,
+                            LanguageCode = "en-US",
+                            MaxWords = 130,
+                            MusicDirectory = "Assets/Music/UpliftEpic",
+                            Name = "Brainrot Facts",
+                            OverlayGifLoopCount = -1,
+                            OverlayGifPath = "Assets/Overlays/subscribe.gif",
+                            OverlayGifPositionPercent = 95.299999999999997,
+                            OverlayGifTailSeconds = 4.0,
+                            QueuePriority = 100,
+                            ScriptTone = "Punchy, fast-paced, slang-friendly",
+                            TargetWordCount = 110,
+                            TtsSpeed = 1.15f,
+                            TtsVoice = "nova",
+                            Type = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AdditionalScriptInstructions = "Always end on a kindness moment, never sad endings.",
+                            ElevenLabsVoiceId = "",
+                            IsActive = true,
+                            KaraokeBackgroundColor = "#1B0F2A",
+                            KaraokeFillColor = "#FFFFFF",
+                            KaraokeFontFamily = "The Bold Font",
+                            KaraokeFontSize = 92,
+                            KaraokeHighlightColor = "#FFB5E8",
+                            KaraokeHighlightFontSize = 130,
+                            KaraokeOutlineColor = "#000000",
+                            KaraokeYPositionPercent = 9.0,
+                            LanguageCode = "en-US",
+                            MaxWords = 140,
+                            MusicDirectory = "Assets/Music/Wholesome",
+                            Name = "Wholesome Animals",
+                            OverlayGifLoopCount = 0,
+                            OverlayGifPath = "Assets/Overlays/subscribe.gif",
+                            OverlayGifPositionPercent = 95.299999999999997,
+                            OverlayGifTailSeconds = 5.0,
+                            QueuePriority = 100,
+                            ScriptTone = "Gentle, warm, comforting",
+                            TargetWordCount = 120,
+                            TtsSpeed = 0.95f,
+                            TtsVoice = "shimmer",
+                            Type = 6
                         });
+                });
+
+            modelBuilder.Entity("Nexus.Data.Entities.RenderError", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Detail")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ErrorCode")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<int>("PhaseAtFailure")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("VideoJobId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VideoJobId", "CreatedAtUtc");
+
+                    b.ToTable("RenderErrors");
                 });
 
             modelBuilder.Entity("Nexus.Data.Entities.Trend", b =>
@@ -191,6 +439,134 @@ namespace Nexus.Data.Migrations
                     b.ToTable("Videos");
                 });
 
+            modelBuilder.Entity("Nexus.Data.Entities.VideoAsset", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<TimeSpan?>("Duration")
+                        .HasColumnType("interval");
+
+                    b.Property<int>("Kind")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("MediaType")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("character varying(1024)");
+
+                    b.Property<long?>("SizeBytes")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("VideoJobId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VideoJobId", "Kind");
+
+                    b.ToTable("VideoAssets");
+                });
+
+            modelBuilder.Entity("Nexus.Data.Entities.VideoJob", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CompletedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal?>("CostUsd")
+                        .HasColumnType("numeric(12,4)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<string>("FinalOutputPath")
+                        .HasMaxLength(1024)
+                        .HasColumnType("character varying(1024)");
+
+                    b.Property<string>("HashtagsCsv")
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
+
+                    b.Property<int>("NicheId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Phase")
+                        .HasColumnType("integer");
+
+                    b.Property<double?>("RenderSeconds")
+                        .HasColumnType("double precision");
+
+                    b.Property<TimeSpan?>("RenderedDuration")
+                        .HasColumnType("interval");
+
+                    b.Property<int>("RetryCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ScriptBody")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ScriptTokens")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("StoryblocksQuery")
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
+
+                    b.Property<string>("TagsCsv")
+                        .HasMaxLength(1024)
+                        .HasColumnType("character varying(1024)");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("Topic")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
+
+                    b.Property<int?>("TtsCharacters")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Phase");
+
+                    b.HasIndex("NicheId", "CreatedAtUtc");
+
+                    b.ToTable("VideoJobs");
+                });
+
+            modelBuilder.Entity("Nexus.Data.Entities.RenderError", b =>
+                {
+                    b.HasOne("Nexus.Data.Entities.VideoJob", "VideoJob")
+                        .WithMany("Errors")
+                        .HasForeignKey("VideoJobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("VideoJob");
+                });
+
             modelBuilder.Entity("Nexus.Data.Entities.Trend", b =>
                 {
                     b.HasOne("Nexus.Data.Entities.Niche", "Niche")
@@ -219,9 +595,33 @@ namespace Nexus.Data.Migrations
                     b.Navigation("Niche");
                 });
 
+            modelBuilder.Entity("Nexus.Data.Entities.VideoAsset", b =>
+                {
+                    b.HasOne("Nexus.Data.Entities.VideoJob", "VideoJob")
+                        .WithMany("Assets")
+                        .HasForeignKey("VideoJobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("VideoJob");
+                });
+
+            modelBuilder.Entity("Nexus.Data.Entities.VideoJob", b =>
+                {
+                    b.HasOne("Nexus.Data.Entities.Niche", "Niche")
+                        .WithMany("VideoJobs")
+                        .HasForeignKey("NicheId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Niche");
+                });
+
             modelBuilder.Entity("Nexus.Data.Entities.Niche", b =>
                 {
                     b.Navigation("Trends");
+
+                    b.Navigation("VideoJobs");
 
                     b.Navigation("Videos");
                 });
@@ -229,6 +629,13 @@ namespace Nexus.Data.Migrations
             modelBuilder.Entity("Nexus.Data.Entities.Video", b =>
                 {
                     b.Navigation("Trends");
+                });
+
+            modelBuilder.Entity("Nexus.Data.Entities.VideoJob", b =>
+                {
+                    b.Navigation("Assets");
+
+                    b.Navigation("Errors");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,6 +2,11 @@
 config/secrets.json
 .env
 data/storyblocks-cookies.json
+data/state.json
+# Match session state / cookies anywhere in the tree (e.g. src/Nexus.API/data/...)
+**/data/storyblocks-cookies.json
+**/data/state.json
+**/data/cookies.json
 
 # .NET
 bin/
@@ -22,7 +27,12 @@ Assets/**/*.mp4
 output/
 temp/
 
+# Runtime artifacts (scraper downloads, render outputs, debug captures)
+**/data/downloads/
+**/data/test-render/
+error_screenshot.png
+card_debug.txt
+
 # OS
 .DS_Store
 Thumbs.db
-data/cookies.json

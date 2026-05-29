@@ -34,9 +34,9 @@ CLI menu: **1** = EF migrations, **2** = API, **3** = Angular, **4** = clean tem
 
 ## Storyblocks scraper (Google OAuth)
 
-1. **No** `data/cookies.json` → Chromium opens **headed**. Sign in with **Sign in with Google** manually.
-2. After login, cookies are saved to `data/cookies.json`.
-3. **With** cookies → headless session, search, apply Footage / Vertical / 4K filters, hover card, download MP4 via `WaitForDownloadAsync`.
+1. **No** `data/state.json` → Chromium opens **headed**. Sign in with **Sign in with Google** manually.
+2. After login, the full Playwright session state (cookies + `localStorage` + `sessionStorage` — Storyblocks' React app stores its JWT in `localStorage`) is saved to `data/state.json`.
+3. **With** state → headless session, search, apply Footage / Vertical / 4K filters, hover card, download MP4 via `WaitForDownloadAsync`.
 
 API endpoints: `POST /api/scraper/authenticate`, `POST /api/scraper/search?query=...&max=3`
 

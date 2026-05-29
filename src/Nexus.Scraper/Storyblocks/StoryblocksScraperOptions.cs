@@ -5,7 +5,11 @@ public sealed class StoryblocksScraperOptions
     public const string SectionName = "Storyblocks";
 
     public string BaseUrl { get; set; } = StoryblocksSelectors.BaseUrl;
-    public string CookiePath { get; set; } = "./data/cookies.json";
+    // Path to the Playwright StorageState file (cookies + localStorage +
+    // sessionStorage). Renamed from CookiePath because the previous
+    // cookie-only persistence broke on Storyblocks — the React app stores
+    // its JWT in localStorage, which only StorageStateAsync captures.
+    public string SessionStatePath { get; set; } = "./data/state.json";
     public string DownloadDirectory { get; set; } = "./data/downloads";
     public int MinDelayMs { get; set; } = 3000;
     public int MaxDelayMs { get; set; } = 7000;

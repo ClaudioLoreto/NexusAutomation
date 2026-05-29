@@ -142,22 +142,45 @@ internal sealed class DevMenu
     private async Task InstallPlaywrightBrowsersAsync()
     {
         Console.WriteLine("Installing Playwright Chromium (required for Storyblocks scraper)...");
-        var code = await ProcessRunner.RunAsync(
+
+        Console.WriteLine("Step 1/2: Building Nexus.Scraper...");
+        var buildCode = await ProcessRunner.RunAsync(
             _root,
-            "pwsh",
-            "-Command \"dotnet build src/Nexus.Scraper/Nexus.Scraper.csproj && dotnet exec Microsoft.Playwright.CLI install chromium\"",
+            "dotnet",
+            "build src/Nexus.Scraper/Nexus.Scraper.csproj",
             waitForExit: true);
 
-        if (code != 0)
+        if (buildCode != 0)
         {
-            Console.WriteLine("Trying alternative: playwright install via build target...");
-            code = await ProcessRunner.RunAsync(
-                _root,
-                "bash",
-                "-c \"export PATH=\\\"$HOME/.dotnet:$PATH\\\" && dotnet build src/Nexus.Scraper/Nexus.Scraper.csproj && cd src/Nexus.Scraper/bin/Debug/net8.0 && ./playwright.sh install chromium\"",
-                waitForExit: true);
+            Console.WriteLine($"Build failed (exit {buildCode}). Aborting Playwright install.");
+            return;
         }
 
-        Console.WriteLine(code == 0 ? "Playwright browsers ready." : "Playwright install may have failed — run manually from Nexus.Scraper output folder.");
+        Console.WriteLine("Step 2/2: Installing Playwright Chromium...");
+        var scraperOutputDir = Path.Combine(_root, "src", "Nexus.Scraper", "bin", "Debug", "net8.0");
+        var playwrightScript = Path.Combine(scraperOutputDir, "playwright.ps1");
+
+        if (!File.Exists(playwrightScript))
+        {
+            Console.WriteLine($"Playwright bootstrap script not found at: {playwrightScript}");
+            Console.WriteLine("Ensure the Microsoft.Playwright NuGet package is referenced in Nexus.Scraper.csproj.");
+            return;
+        }
+
+        var installCode = await ProcessRunner.RunAsync(
+            _root,
+            "powershell",
+            $"-NoProfile -ExecutionPolicy Bypass -File \"{playwrightScript}\" install chromium",
+            waitForExit: true);
+
+        if (installCode == 0)
+        {
+            Console.WriteLine("Playwright browsers ready.");
+        }
+        else
+        {
+            Console.WriteLine($"Playwright install failed (exit {installCode}). Run manually:");
+            Console.WriteLine($"  powershell -NoProfile -ExecutionPolicy Bypass -File \"{playwrightScript}\" install chromium");
+        }
     }
 }
